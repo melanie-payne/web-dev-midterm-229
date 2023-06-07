@@ -4,6 +4,19 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+//Database Setup
+let mongoose = require('mongoose');
+let DB = require('./db')
+
+mongoose.connect(DB.URI, { useNewUrlParser: true, useUnifiedTopology: true });
+
+let mongoDB = mongoose.connection;
+mongoDB.on('error', console.error.bind(console, 'Connection Error:'));
+mongoDB.once('open', () => {
+  console.log('Node.JS is successfully connected to MongoDB.')
+});
+
+
 var indexRouter = require('../routes/index');
 var usersRouter = require('../routes/users');
 
