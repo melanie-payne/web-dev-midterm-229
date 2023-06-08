@@ -12,9 +12,16 @@ router.get('/', (req, res, next) => {
             return console.error(err);
         }else{
             //console.log(productList);
-            res.render('product', {title: 'Product Info', ProductList: productList})
+            res.render('product/list', {title: 'Product Info', ProductList: productList})
         }
     });
 });
+
+// to open add product page
+router.get('/add', (req, res, next) => {
+    res.render('product/add', {title: 'Add Product'})
+});
+
+// insert product data into mongoDB collection
 
 module.exports = router;
