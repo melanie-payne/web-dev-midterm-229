@@ -11,7 +11,8 @@ router.get('/', (req, res, next) => {
         if(err){
             return console.error(err);
         }else{
-            console.log(productList);
+            //console.log(productList);
+            res.render('product', {title: 'Product Info', ProductList: productList})
         }
     });
 });
