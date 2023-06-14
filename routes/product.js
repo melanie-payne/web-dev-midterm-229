@@ -23,5 +23,23 @@ router.get('/add', (req, res, next) => {
 });
 
 // insert product data into mongoDB collection
+router.post('/add', (req, res, next) => {
+    //getting data from form
+    let newProduct = Product({
+        "name": req.body.pname,
+        "company": req.body.pcompany,
+        "price": req.body.price
+    });
+
+    //insert data into the mongoDB
+    Product.create(newProduct, (err, Product) => {
+        if(err){
+            console.log(err);
+            res.end(err);
+        }else{
+            res.redirect('/products')
+        }
+    });
+});
 
 module.exports = router;
