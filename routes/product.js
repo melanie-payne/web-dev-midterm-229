@@ -78,4 +78,18 @@ router.post('/edit/:id', (req, res, next) => {
     });
 });
 
+//to delete documents from the collection
+router.get('/delete/:id', (req, res, next) => {
+    let id = req.params.id;
+
+    Product.remove({_id: id}, (err) => {
+        if(err){
+            console.log(err);
+            res.end(err);
+        }else{
+            res.redirect('/products');
+        }
+    });
+});
+
 module.exports = router;
